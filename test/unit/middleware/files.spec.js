@@ -11,9 +11,9 @@ const request = require("supertest");
 const connect = require("connect");
 
 const helpers = require("../../helpers");
-const files = helpers.decorator(require("../../../lib/middleware/files"));
-const fsProvider = require("../../../lib/providers/fs");
-const Responder = require("../../../lib/responder");
+const files = helpers.decorator(require("../../../src/middleware/files"));
+const fsProvider = require("../../../src/providers/fs");
+const Responder = require("../../../src/responder");
 
 describe("i18n", () => {
   const provider = fsProvider({
@@ -455,7 +455,7 @@ describe("static server with trailing slash customization", () => {
         } else if (tt.wantContent) {
           r.expect(200).expect(tt.wantContent);
         } else {
-          done(new Error("Test set up incorrectly"));
+          return done(new Error("Test set up incorrectly"));
         }
         r.end(done);
       });
